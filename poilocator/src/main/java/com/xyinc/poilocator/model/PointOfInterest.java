@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class POI implements Serializable{
+public class PointOfInterest implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
