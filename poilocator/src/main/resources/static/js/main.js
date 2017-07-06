@@ -2,7 +2,7 @@ $(function() {
 	$(".poi-load").on('click', function(event) {
 		event.preventDefault();
 		$.ajax({
-				url: "http://localhost:8080/points-of-interest",
+				url: "https://xy-inc2.herokuapp.com/points-of-interest",
 				type: "get",
 				success: function(response) {
 					desenhaTabela(response);
