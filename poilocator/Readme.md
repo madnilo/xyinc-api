@@ -6,7 +6,7 @@
    Live Demo: https://xy-inc2.herokuapp.com/
 
 ### Como testar a API
-- `View`: Uma view simples em html/js foi criada, para facilitar a visualização de POI cadastrados. Basta acessar pelo browser a url base da app.
+- `View`: Uma view simples em html/js foi criada, para facilitar a visualização de POI cadastrados. Basta acessar pelo browser a url base da app. **Essa view usa dados do live demo no heroku.**
 - `Cliente HTTP`: qualquer cliente pode ser usado.
 - `Banco de Dados`: O banco de dados utilizado é o H2. É um banco de dados em memória, onde as tabelas são geradas automaticamente (por meio de ORM) a cada execução da app (e apagado cada vez que se para o servidor). Nenhuma configuração é necessária.
 - `IDE`: Utilizado o Spring Tool Suite (baseado no eclipse), porém pode ser executado em outras IDEs como o intelliJ.
