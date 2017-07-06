@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.xyinc.poilocator.helper.MathHelper;
 import com.xyinc.poilocator.model.PointOfInterest;
 import com.xyinc.poilocator.repository.PointOfInterestRepository;
 
@@ -53,7 +54,8 @@ public class PointOfInterestResource {
 	
 	@CrossOrigin
 	@RequestMapping(method = RequestMethod.GET, path="/nearby/{x}/{y}/{d-max}")
-	public ResponseEntity<List<PointOfInterest>> listNearby(	@PathVariable("x") int x,
+	public ResponseEntity<List<PointOfInterest>> listNearby(	
+								@PathVariable("x") int x,
 								@PathVariable("y") int y,
 								@PathVariable("d-max") int maxDistance){
 		
@@ -63,23 +65,32 @@ public class PointOfInterestResource {
 		PointOfInterest a = new PointOfInterest(x, y);
 
 		for(PointOfInterest b : points){
-			if(distanceBetweenTwoPoints(a, b) <= maxDistance) result.add(b);
+			if(MathHelper.distanceBetweenTwoPoints(a, b) <= maxDistance) result.add(b);
 		}
 		
 		return ResponseEntity.ok().body(result);
 	} 
 	
 	
-	
-	private double distanceBetweenTwoPoints(PointOfInterest a, PointOfInterest b){
+	@CrossOrigin
+	@RequestMapping(method = RequestMethod.POST, path="/populate-db")
+	public ResponseEntity<Void> populateDB(@RequestBody List<PointOfInterest> points){
 		
-		return Math.sqrt(
-							((a.getX() - b.getX()) * (a.getX() - b.getX())) 
-						+ 	
-							((a.getY() - b.getY()) * (a.getY() - b.getY()))
-						);
+		for(PointOfInterest poi : points){
+			repository.save(poi);
+		}
+		return ResponseEntity.ok().build();
 	}
 
+	
+	@CrossOrigin
+	@RequestMapping(method = RequestMethod.GET, path = "/{id}")
+	public ResponseEntity<PointOfInterest> searchById(@PathVariable("id") long id){
+		
+		PointOfInterest result = repository.findOne(id);
+		
+		return ResponseEntity.ok().body(result);
+	}
 }
 
 
