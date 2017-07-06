@@ -1,7 +1,7 @@
 # XY Inc API
 
-Esta é uma API do tipo RESTful. A API possui apenas um recurso, chamado POI (Point Of Interest), que simplificadamente representa pontos em um mapa. Neste cenário simplificado, cada coordenada (x,y) possui valores inteiros e positivos.
-É possível cadastrar novos POI, listar os cadastrados, e obter os POI próximos a uma coordenada específica, dentro de um range. 
+   Esta é uma API do tipo RESTful. A API possui apenas um recurso, chamado POI (Point Of Interest), que basicamente representa pontos em um mapa. Neste cenário simplificado, cada coordenada (x,y) possui valores inteiros e positivos.  
+  É possível cadastrar novos POI, listar os cadastrados, e obter os POI próximos a uma coordenada específica, dentro de um range. 
 
 
 ### Como testar a API
@@ -20,6 +20,7 @@ Além das rotas requeridas, foram criadas duas rotas extra para facilitar o trab
 | GET | /points-of-interest | Lista todos os pontos de interesse cadastrados. |
 | POST| /points-of-interest/new | Cadastra um novo objeto ponto de interesse. Após a criaçãouma URI é retornada no Header "Location".|
 | GET | /points-of-interest/"x"/"y"/"d-max" | Obtém os pontos de interesse próximos do ponto (x,y) informado, numa distância máxima d-max.|
+| GET | / | Pode ser utilizado no browser para exibir uma lista de POI cadastrados.|
 | POST| /points-of-interest/populate-db | cadastra uma lista de objetos pontos de interesse. |
 | GET | /points-of-interest/"id" | Obtém um ponto de interesse de id específica. |
 
