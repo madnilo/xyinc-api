@@ -16,10 +16,19 @@ public class PointOfInterest implements Serializable{
 	@Id @GeneratedValue
 	private long id;
 	private String nome;
-	private Integer coordenadaX;
-	private Integer coordenadaY;
+	private Integer x;
+	private Integer y;
 
 	
+	public PointOfInterest(){
+		
+	}
+	
+	public PointOfInterest(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -28,19 +37,27 @@ public class PointOfInterest implements Serializable{
 		this.nome = nome;
 	}
 	
-	public Integer getCoordenadaX() {
-		return coordenadaX;
+	public Integer getX() {
+		return x;
 	}
 	
-	public void setCoordenadaX(Integer coordenadaX) {
-		this.coordenadaX = coordenadaX < 0 ? (coordenadaX*(-1)) : coordenadaX;
+	public void setX(Integer x) {
+		this.x = x < 0 ? (x*(-1)) : x;
 	}
 	
-	public Integer getCoordenadaY() {
-		return coordenadaY;
+	public Integer getY() {
+		return y;
 	}
 	
-	public void setCoordenadaY(Integer coordenadaY) {
-		this.coordenadaY = coordenadaY < 0 ? (coordenadaY*(-1)) : coordenadaY;
+	public void setY(Integer y) {
+		this.y = y < 0 ? (y*(-1)) : y;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }
