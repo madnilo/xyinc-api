@@ -3,6 +3,7 @@
    Esta é uma API do tipo RESTful. A API possui apenas um recurso, chamado POI (Point Of Interest), que basicamente representa pontos em um mapa. Neste cenário simplificado, cada coordenada (x,y) possui valores inteiros e positivos.  
   É possível cadastrar novos POI, listar os cadastrados, e obter os POI próximos a uma coordenada específica, dentro de um range. 
 
+   Live Demo: https://xy-inc2.herokuapp.com/
 
 ### Como testar a API
 - `View`: Uma view simples em html/js foi criada, para facilitar a visualização de POI cadastrados. Basta acessar pelo browser a url base da app.
