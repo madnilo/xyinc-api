@@ -1,0 +1,149 @@
+{
+	"variables": [],
+	"info": {
+		"name": "xy-inc",
+		"_postman_id": "edc4fb3c-bde3-4683-54a7-6e77a9492b49",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar novo ponto de interesse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201;",
+							"",
+							"",
+							"postman.setGlobalVariable(\"location\", postman.getResponseHeader(\"Location\"));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/points-of-interest/new",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Teste\",\n\t\"x\": 100,\n\t\"y\": 200\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obter POI com id específico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Body matches string\"] = responseBody.has(\"Teste\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{location}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Popular o banco de dados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/points-of-interest/populate-db",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"nome\": \"Lanchonete\",\n        \"x\": 27,\n        \"y\": 12\n    },\n    {\n        \"nome\": \"Posto\",\n        \"x\": 31,\n        \"y\": 18\n    },\n    {\n        \"nome\": \"Joalheria\",\n        \"x\": 15,\n        \"y\": 12\n    },\n    {\n        \"nome\": \"Floricultura\",\n        \"x\": 19,\n        \"y\": 21\n    },\n    {\n        \"nome\": \"Pub\",\n        \"x\": 12,\n        \"y\": 8\n    },\n    {\n        \"nome\": \"Supermercado\",\n        \"x\": 23,\n        \"y\": 6\n    },\n    {\n        \"nome\": \"Churrascaria\",\n        \"x\": 28,\n        \"y\": 2\n    }\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os pontos de interesse",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Body matches string\"] = responseBody.has(\"Teste\");",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"[\");",
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/points-of-interest",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obter pontos proximos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Body matches string\"] = responseBody.has(\"Lanchonete\");",
+							"tests[\"Body matches string\"] = responseBody.has(\"Joalheria\");",
+							"tests[\"Body matches string\"] = responseBody.has(\"Pub\");",
+							"tests[\"Body matches string\"] = responseBody.has(\"Supermercado\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/points-of-interest/nearby/20/10/10",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

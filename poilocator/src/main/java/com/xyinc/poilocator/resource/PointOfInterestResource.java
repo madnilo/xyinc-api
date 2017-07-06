@@ -34,6 +34,7 @@ public class PointOfInterestResource {
 		
 		URI uri = ServletUriComponentsBuilder
 					.fromCurrentRequest()
+					.replacePath("/points-of-interest")
 					.path("/{id}")
 					.buildAndExpand(poi.getId())
 					.toUri();
